@@ -11,6 +11,7 @@
     background-color: #fff;
     color: #000;
     line-height: 1.6;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
   header {
@@ -23,7 +24,7 @@
   }
   
   .logo img {
-    max-height: 50px;
+    max-height: 80px;
   }
   
   .menu-icon {
@@ -33,20 +34,22 @@
   
   .hero {
     position: relative;
-    overflow: hidden;
-    height: 400px;
-  }
+    width: 100%;
+    height: auto;
+  }  
   
   .hero .overlay-text {
     position: absolute;
-    top: 20%;
-    left: 5%;
-    background-color: #003399;
+    top: 50%;
+    left: 0%;
+    background-color: rgba(3, 3, 164, 0.8); /* slightly transparent */
     color: white;
     padding: 10px 20px;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
   }
+  
   
   .slider {
     height: 100%;
@@ -56,9 +59,15 @@
   
   .slider img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: block;
+    z-index: 1;
+    position: relative;
   }
+  
+  .overlay-text {
+    z-index: 2;
+  }
+  
   
   .arrows {
     position: absolute;
@@ -80,90 +89,226 @@
   }
   
   .intro-text {
-    padding: 2rem;
-    max-width: 900px;
-    margin: auto;
-    font-size: 1.1rem;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px; /* increased the gap between elements */
+    padding: 20px;
   }
+  
+  .intro-text p {
+    flex: 1 1 60%;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #1c2b39;
+    margin: 0; /* remove default margin */
+  }
+  
+  .intro-text .operations {
+    flex: 1 1 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .intro-text .operations img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive for small screens */
+  @media (max-width: 768px) {
+    .intro-text {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .intro-text p {
+      flex: 1 1 100%;
+    }
+  
+    .intro-text .operations {
+      flex: 1 1 100%;
+      margin-top: 20px; /* add space between text and image on mobile */
+    }
+  }
+  
+  
   
   .cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1.5rem;
     padding: 2rem;
-  }
+  }  
   
   .card {
     background-color: #001f3f;
     color: #fff;
     padding: 2rem;
     border-radius: 4px;
-    width: 300px;
+    width: 32%;
+    min-height: 150px;
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    flex-direction: column; 
+    justify-content: space-between; 
+    position: relative; 
+    font-weight: 200;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    text-align: left;
+  }
+  
+
+  .card h3 {
+    color: #3393c7;
+    font-size: 3.7rem;
+    margin: 0;
+    line-height: 1;
+    align-self: flex-start; /* Keep chevron at top-left */
+  }
+  
+  .card span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-top: 0.5rem; /* Pushes text to bottom */
+    align-self: flex-start; /* Aligns text to left */
   }
   
   .card:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   }
+
+
   
-  .icon {
-    color: #3393c7; /* That nice bright blue */
-    font-size: 2rem;
-    line-height: 1;
+/* Tablet (768px - 991px) */
+@media (max-width: 991px) {
+  .cards {
+    gap: 1rem;
+    padding: 1.5rem;
   }
   
-  .card-text {
-    text-align: left;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5;
+  .card {
+    width: 16%;
+    min-height: 180px;
+    min-width: 220px;
+    padding: 1.5rem;
   }
+
+  .card h3 {
+    font-size: 3rem;
+  }
+
+  .card span {
+    -webkit-line-clamp: 3; /* Allow 3 lines on tablet */
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile (up to 600px) */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    padding: 1.5rem;
+  }
+  
+  .card span {
+    font-size: 1.5rem;
+  }
+  
+  .cards {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
   
   
   .links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    justify-content: space-between;
+    gap: 1.5rem;
     padding: 2rem;
     background-color: #fff;
   }
   
-  .links a {
-    display: inline-block;
-    background-color: #0047bb; /* matches the blue in your image */
+  .link-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 32%; /* Match card width */
+  }
+  
+  .link-group a {
+    flex: 1;
+    background-color: #0047bb;
     color: #fff;
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1rem;
     text-decoration: none;
     border-radius: 4px;
     font-weight: bold;
     font-size: 0.9rem;
+    text-align: left;
+    position: relative;
     transition: background-color 0.3s ease;
+  }
+
+  .link-group a::after {
+    content: ">";
+    position: absolute;
+    right: 0.8rem;
+    color: #3393c7;
+    font-weight: bold;
+    font-size: 2.2rem; /* Increased from default size */
+    top: 40%; /* Center vertically */
+    transform: translateY(-50%); /* Perfect vertical alignment */
+    line-height: 1; /* Prevents extra spacing */
   }
   
   .links a:hover {
     background-color: #001f3f;
   }
   
-  @media (max-width: 768px) {
-    .cards {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .hero {
-      height: 300px;
-    }
-  
-    .arrow {
-      font-size: 1.5rem;
-    }
+ /* Tablet (2 groups per row) */
+@media (max-width: 991px) {
+  .links {
+    gap: 1rem;
+    padding: 1.5rem;
   }
   
+  .link-group {
+    width: 48%; /* 2 groups per row */
+    flex-wrap: wrap; /* Allow links to wrap if needed */
+  }
+  
+  .link-group a {
+    min-width: calc(50% - 0.5rem); /* 2 links per line */
+  }
+}
+
+/* Mobile (1 group per row) */
+@media (max-width: 600px) {
+  .links {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .link-group {
+    width: 100%;
+    flex-direction: column; /* Stack links vertically */
+    gap: 0.75rem;
+  }
+  
+  .link-group a {
+    width: 100%; /* Full width links */
+    min-width: auto;
+  }
+}

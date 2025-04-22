@@ -1,12 +1,13 @@
 // script.js
 
 $(document).ready(function () {
-    const images = [
-      'image1.jpg',
-      'image2.jpg',
-      'image3.jpg',
-      'image4.jpg'
-    ];
+  const images = [
+    'images/office.png',
+    'images/image2.jpg',
+    'images/image3.jpg',
+    'images/image4.jpg'
+  ];
+  
   
     const messages = [
       'LOOK BEYOND THE ORDINARY',
