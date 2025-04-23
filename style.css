@@ -6,6 +6,10 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
   
   body {
     background-color: #fff;
@@ -15,45 +19,157 @@
   }
   
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background-color: white; /* or your preferred background */
+    z-index: 1000; /* make sure it's above other elements */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* optional shadow */
+    transition: all 0.3s ease;
+  }
+
+  header.expanded {
+    padding: 2rem 2rem;
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
   
   .logo img {
     max-height: 80px;
   }
+ 
+  
+  nav {
+    position: relative;
+    padding: 1rem;
+  }
+
   
   .menu-icon {
     width: 30px;
     cursor: pointer;
+    z-index: 1001;
+    position: relative;
   }
   
-  .hero {
-    position: relative;
+  /* Updated nav-links to fill the whole screen */
+  .nav-links {
+    list-style: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100vh;
+    background-color: #001f3f;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    z-index: 1000;
+  
+    /* Animation setup */
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #3393c7; /* Light blue on hover */
+  }
+  
+  .nav-links .arrow {
+    color: #0047bb;
+    font-size: 1.9rem;
+    margin-right: 8px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover .arrow {
+    color: #3393c7; /* Arrow also changes color on hover */
+  }
+  
+  
+  .nav-links.show {
+  display: flex;
+  transform: translateX(0%);
+}
+
+.blue-icons {
+  position: absolute;
+  bottom: 60px;
+  right: 50px;
+  width: 400px; /* Adjust as needed */
+  height: auto;
+}
+  
+  .hero {
+    margin-top: 80px; 
+    position: relative;
+    scroll-margin-top: 90px;
   }  
   
   .hero .overlay-text {
     position: absolute;
     top: 50%;
     left: 0%;
-    background-color: rgba(3, 3, 164, 0.8); /* slightly transparent */
+    background-color: #244AC2; /* solid color, no transparency */
     color: white;
-    padding: 10px 20px;
+    padding: 15px 30px;
     font-weight: bold;
     font-size: 1.5rem;
-    border-radius: 5px;
+    border-radius: 1px;
   }
+  /* Tablets (portrait and up) */
+@media (min-width: 600px) {
+  .hero {
+    margin-top: 80px; /* Slightly larger header on tablets */
+  }
+}
+
+/* Tablets and small laptops */
+@media (min-width: 768px) {
+  .hero {
+    margin-top: 90px;
+  }
+}
+
+/* Desktops and larger screens */
+@media (min-width: 1024px) {
+  .hero {
+    margin-top: 100px;
+  }
+}
+  
+@media (max-width: 599px) {
+  .hero .overlay-text {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    max-width: 90%; /* Prevent text from stretching too wide */
+    white-space: normal; /* Allow wrapping */
+    line-height: 1.4; /* Make it breathe better */
+  }
+}
+
   
   
   .slider {
-    height: 100%;
-    width: 100%;
     position: relative;
   }
   
@@ -72,20 +188,25 @@
   .arrows {
     position: absolute;
     top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    right: 0.5rem;
     transform: translateY(-50%);
-    padding: 0 20px;
+    z-index: 2;
   }
   
+  
   .arrow {
-    font-size: 2rem;
+    font-size: 7rem;
     color: white;
+    padding: 0rem 0.5rem;
+    border-radius: 50%;
     cursor: pointer;
-    background: rgba(0,0,0,0.4);
-    padding: 5px 10px;
-    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-weight: 0; 
+    font-family: Arial, sans-serif; 
+  }
+  
+  .arrow:hover {
+    background-color: rgba(0, 0, 0, 0.6);
   }
   
   .intro-text {
@@ -93,17 +214,28 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 40px; /* increased the gap between elements */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
     padding: 20px;
   }
   
   .intro-text p {
+    font-family: 'Proxima Nova', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+    color: #0f2e47; /* Adjust based on the actual color tone in the image */
+    max-width: 800px; /* Optional for better readability */
+    margin: 0 auto;
     flex: 1 1 60%;
     font-size: 1.1rem;
     line-height: 1.6;
     color: #1c2b39;
     margin: 0; /* remove default margin */
   }
+
+  
+
   
   .intro-text .operations {
     flex: 1 1 35%;
@@ -116,6 +248,68 @@
     max-width: 100%;
     height: auto;
   }
+
+  /* Tablet layout: image on the right */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .intro-text {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .intro-text p {
+    width: 65%;
+  }
+
+  .oparations {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+/* Large screens: keep row layout if you want */
+@media (min-width: 1025px) {
+  .intro-text {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .intro-text p {
+    width: 65%;
+  }
+
+  .oparations {
+    width: 30%;
+  }
+}
+
+  .dots {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: right; /* <-- Changed from center to right */
+    padding-right: 20px; /* Optional: adds some space from the edge */
+    z-index: 10;
+  }
+  
+  
+  
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot.active {
+    background-color: #717171;
+  }
+  
   
   /* Responsive for small screens */
   @media (max-width: 768px) {
@@ -192,6 +386,10 @@
 /* Tablet (768px - 991px) */
 @media (max-width: 991px) {
   .cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
     padding: 1.5rem;
   }
@@ -253,7 +451,7 @@
     color: #fff;
     padding: 0.75rem 1rem;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 1px;
     font-weight: bold;
     font-size: 0.9rem;
     text-align: left;
@@ -276,25 +474,46 @@
   .links a:hover {
     background-color: #001f3f;
   }
-  
- /* Tablet (2 groups per row) */
-@media (max-width: 991px) {
+
+ /* Tablet breakpoint (1024px and down) */
+@media (max-width: 1024px) {
   .links {
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* center all groups */
+    gap: 1.5rem;
     padding: 1.5rem;
   }
-  
+
   .link-group {
-    width: 48%; /* 2 groups per row */
-    flex-wrap: wrap; /* Allow links to wrap if needed */
+    width: 45%; /* Two per row, leave gap space */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
-  
+
   .link-group a {
-    min-width: calc(50% - 0.5rem); /* 2 links per line */
+    font-size: 1rem;
+    text-align: left;
   }
 }
 
-/* Mobile (1 group per row) */
+/* Mobile breakpoint (768px and down) */
+@media (max-width: 768px) {
+  .link-group {
+    width: 100%; /* Stack each group */
+    flex-direction: column;
+  }
+
+  .link-group a {
+    font-size: 1rem;
+  }
+}
+
+
+
+  
+  /* Mobile (1 group per row) */
 @media (max-width: 600px) {
   .links {
     padding: 1rem;
@@ -310,5 +529,175 @@
   .link-group a {
     width: 100%; /* Full width links */
     min-width: auto;
+  }
+}
+ 
+
+
+/* Extra Large Screens (1600px and above) */
+@media (min-width: 1600px) {
+  .intro-text {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  
+  .cards, .links {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+}
+
+/* Large Tablets and Small Laptops (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .card {
+    width: 30%;
+    min-width: 240px;
+  }
+  
+  .link-group {
+    width: 30%;
+  }
+  
+  .hero .overlay-text {
+    font-size: 1.3rem;
+  }
+}
+
+/* Medium Tablets (768px - 991px) - Your existing tablet styles are kept */
+
+/* Small Tablets (600px - 767px) */
+@media (max-width: 767px) and (min-width: 600px) {
+  .card {
+    width: 45%;
+    min-width: 220px;
+  }
+  
+  .link-group {
+    width: 45%;
+  }
+  
+  .arrow {
+    font-size: 5rem;
+  }
+  
+  .hero .overlay-text {
+    font-size: 1.2rem;
+    padding: 8px 20px;
+  }
+}
+
+/* Large Phones (480px - 599px) */
+@media (max-width: 599px) and (min-width: 480px) {
+  .logo img {
+    max-height: 60px;
+  }
+  
+  .nav-links a {
+    font-size: 1.3rem;
+  }
+  
+  .card h3 {
+    font-size: 3rem;
+  }
+  
+  .card span {
+    font-size: 1.5rem;
+  }
+  
+  .link-group a::after {
+    font-size: 1.8rem;
+  }
+}
+
+/* Small Phones (up to 479px) */
+@media (max-width: 479px) {
+  header {
+    padding: 0.8rem;
+  }
+  
+  .logo img {
+    max-height: 50px;
+  }
+  
+  .hero .overlay-text {
+    font-size: 1rem;
+    padding: 6px 15px;
+  }
+  
+  .arrow {
+    font-size: 4rem;
+  }
+  
+  .card {
+    padding: 1.2rem;
+  }
+  
+  .card h3 {
+    font-size: 2.5rem;
+  }
+  
+  .card span {
+    font-size: 1.3rem;
+  }
+  
+  .link-group a {
+    font-size: 0.8rem;
+  }
+  
+  .link-group a::after {
+    font-size: 1.5rem;
+  }
+  
+  .dots {
+    bottom: 15px;
+  }
+  
+  .dot {
+    height: 10px;
+    width: 10px;
+  }
+}
+
+/* Height Adjustments for Tall Screens */
+@media (min-height: 1000px) {
+  .card {
+    min-height: 200px;
+  }
+  
+  .nav-links {
+    gap: 2.5rem;
+  }
+}
+
+/* Height Adjustments for Short Screens */
+@media (max-height: 600px) {
+  .card {
+    min-height: 120px;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+}
+
+/* Portrait Orientation */
+@media (orientation: portrait) {
+  .intro-text {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-width: 991px) {
+  .card {
+    width: 45%;
+  }
+  
+  .link-group {
+    width: 45%;
   }
 }
