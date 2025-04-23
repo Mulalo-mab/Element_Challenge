@@ -356,12 +356,10 @@
   }
   
 
-  .card h3 {
-    color: #3393c7;
-    font-size: 3.7rem;
-    margin: 0;
-    line-height: 1;
-    align-self: flex-start; /* Keep chevron at top-left */
+  .card-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 8px; /* spacing between icon and text */
   }
   
   .card span {
@@ -401,7 +399,7 @@
     padding: 1.5rem;
   }
 
-  .card h3 {
+  .card-icon {
     font-size: 3rem;
   }
 
@@ -429,7 +427,7 @@
     min-height: 200px;
   }
 
-  .card h3 {
+  .card-icon {
     font-size: 2.2rem;
   }
 
