@@ -23,7 +23,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
+    height: 100px;
     background-color: white; /* or your preferred background */
     z-index: 1000; /* make sure it's above other elements */
     display: flex;
@@ -36,7 +36,7 @@
   header.expanded {
     padding: 2rem 2rem;
     transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    
   }
   
   .logo img {
@@ -92,29 +92,30 @@
     color: #3393c7; /* Light blue on hover */
   }
   
-  .nav-links .arrow {
-    color: #0047bb;
-    font-size: 1.9rem;
-    margin-right: 8px;
-    font-weight: bold;
-    transition: color 0.3s ease;
+  .arrow-img {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
   }
   
-  .nav-links a:hover .arrow {
-    color: #3393c7; /* Arrow also changes color on hover */
-  }
-
   .mobile-logo {
     display: none;
-    height: 40px;
-    margin: 1rem auto;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 80px; /* Increase the size */
+    width: auto;
     transition: opacity 0.3s ease;
+    z-index: 1002; /* Stay on top of nav background */
   }
   
-  /* Only show the logo when menu is open */
-  .nav-links.show {
+  /* Show when nav is open */
+  .nav-links.show .mobile-logo {
     display: block;
+    opacity: 1;
   }
+  
   
   
   
@@ -122,6 +123,8 @@
   display: flex;
   transform: translateX(0%);
 }
+
+
 
 .blue-icons {
   position: absolute;
@@ -141,7 +144,7 @@
   /* Base Styles for Hero */
   .hero .overlay-text {
     position: absolute;
-    top: 49%;
+    top: 41%;
     left: -100%; /* Start off the screen like memo */
     background-color: #244AC2;
     color: white;
@@ -155,13 +158,13 @@
     line-height: 120px;
     z-index: 10;
     transition-property: left; /* Transition only left */
-    transition-duration: 0.6s;
+    transition-duration: 0.3s;
   }
   
   /* Active slide text: Bring it to position */
   .hero .overlay-text.active {
     left: 0;
-    transition-delay: 0.6s; /* Optional */
+    transition-delay: 0.3s; /* Optional */
   }
   
 /* Media Queries */
@@ -202,6 +205,7 @@
 .slider {
   position: relative;
   overflow: hidden;
+ 
 }
 
 .slider img {
@@ -228,7 +232,7 @@
 /* Main slider container */
 .main-slider {
   position: relative;
-  margin-top: 70px; 
+  margin-top: 100px; 
   margin-bottom: 60px;
   z-index: 1; 
 }
@@ -350,29 +354,21 @@
 
 /* Responsive Media Queries */
 
-/* Mobile devices */
 @media (max-width: 599px) {
+  .main-slider {
+    padding-top: 100px; /* Push content below header */
+  }
+
   .main-slider:before,
   .main-slider:after {
     height: 60px;
     margin-top: -30px;
   }
 
-  .slider .next-slide {
-    width: 40px;
-    height: 40px;
-    right: 5px;
-  }
-
-  .main-slider .inner > .next-slide {
-    width: 50px;
-    height: 60px;
-    margin-top: -30px;
-  }
-
-  .main-slider .inner .next-slide:hover {
-    right: -15px;
-    width: 60px;
+  .main-slider .slider img {
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
   }
 }
 

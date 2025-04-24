@@ -5,7 +5,7 @@ $(document).ready(function () {
     'images/main-man.png',
     'images/office.png',
     'images/perfomance.jpg',
-    'images/sucess.jpg'
+    'images/Mask-Group-231.jpg'
   ];
 
   const messages = [
@@ -35,7 +35,7 @@ $(document).ready(function () {
       // Update dots
       $('.dot').removeClass('active');
       $('.dot').eq(currentIndex).addClass('active');
-    }, 600); // Delay should match CSS slide out time
+    }, 300); // Delay should match CSS slide out time
   }
 
   $('.arrow.right, .next-slide').click(function () {
