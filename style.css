@@ -18,44 +18,163 @@
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
+  /* Base styles - Desktop first */
   header {
+    height: 200px;
     position: fixed;
+    width: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100px;
-    background-color: white; /* or your preferred background */
-    z-index: 1000; /* make sure it's above other elements */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
+    background-color: #fff;
     transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
   }
-
+  
   header.expanded {
-    padding: 2rem 2rem;
+    padding: 1rem 2rem;
     transform: scale(1.02);
-    
+  }
+  
+  .logo {
+    margin-right: auto;
   }
   
   .logo img {
-    max-height: 80px;
+    width: 220px;
+    transition: all 0.3s ease;
   }
- 
   
+  .menu-icon {
+    width: 40px;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  /* ==================== */
+  /* RESPONSIVE BREAKPOINTS */
+  /* ==================== */
+  
+  /* Large Desktops (1920px and up) */
+  @media (min-width: 1920px) {
+    header {
+      height: 200px;
+    }
+    .logo img {
+      width: 250px;
+      margin-left: 450px;
+    }
+
+    .menu-icon {
+      position: absolute; /* Use absolute positioning */
+      right: 450px; /* Align to the right of the navbar */
+      top: 50%; /* Center vertically */
+      transform: translateY(-50%); /* Adjust to exactly center */
+    }
+  }
+  
+  /* Standard Desktops (1440px - 1919px) - Default styles apply */
+  
+  /* Small Laptops (1200px - 1439px) */
+  @media (max-width: 1439px) and (min-width: 1200px) {
+    header {
+      height: 160px;
+    }
+    .logo img {
+      width: 200px;
+    }
+  }
+  
+  /* Large Tablets (992px - 1199px) */
+  @media (max-width: 1199px) and (min-width: 992px) {
+    header {
+      height: 140px;
+      padding: 0 1.5rem;
+    }
+    .logo img {
+      width: 180px;
+    }
+    .menu-icon {
+      width: 35px;
+    }
+  }
+  
+  /* Tablets (768px - 991px) */
+  @media (max-width: 991px) and (min-width: 768px) {
+    header {
+      height: 120px;
+      padding: 0 1.25rem;
+    }
+    .logo img {
+      width: 160px;
+    }
+    .menu-icon {
+      width: 32px;
+    }
+  }
+  
+  /* Large Phones (576px - 767px) */
+  @media (max-width: 767px) and (min-width: 576px) {
+    header {
+      height: 100px;
+      padding: 0 1rem;
+    }
+    .logo img {
+      width: 140px;
+    }
+    .menu-icon {
+      width: 30px;
+    }
+  }
+  
+  /* Small Phones (up to 575px) */
+  @media (max-width: 575px) {
+    header {
+      height: 80px;
+      padding: 0 0.75rem;
+    }
+    .logo img {
+      width: 120px;
+    }
+    .menu-icon {
+      width: 28px;
+    }
+    
+    header.expanded {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+  
+  /* Portrait Orientation Adjustments */
+  @media (orientation: portrait) and (max-width: 991px) {
+    header {
+      justify-content: space-between;
+    }
+  }
+  
+  /* Landscape Orientation Adjustments */
+  @media (orientation: landscape) and (max-height: 500px) {
+    header {
+      height: 70px;
+    }
+    .logo img {
+      width: 100px;
+    }
+  }
+  
+
+
   nav {
     position: relative;
     padding: 1rem;
   }
 
   
-  .menu-icon {
-    width: 30px;
-    cursor: pointer;
-    z-index: 1001;
-    position: relative;
-  }
   
   /* Updated nav-links to fill the whole screen */
   .nav-links {
@@ -144,7 +263,7 @@
   /* Base Styles for Hero */
   .hero .overlay-text {
     position: absolute;
-    top: 41%;
+    top: 41.5%;
     left: -100%; /* Start off the screen like memo */
     background-color: #244AC2;
     color: white;
@@ -154,7 +273,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     border-radius: 1px;
-    height: 120px;
+    height: 121px;
     line-height: 120px;
     z-index: 10;
     transition-property: left; /* Transition only left */
@@ -193,7 +312,7 @@
 @media screen and (max-width: 480px) {
   .hero .overlay-text {
     font-size: 1.2rem;
-    padding: 0 10px;
+    padding: 0px;
     height: auto;
     line-height: normal;
     top: 45%;
@@ -233,7 +352,7 @@
 .main-slider {
   position: relative;
   margin-top: 100px; 
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   z-index: 1; 
 }
 
@@ -280,7 +399,7 @@
 .main-slider .inner {
   max-width: 1620px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   position: relative;
   z-index: 10;
   overflow: hidden;
@@ -356,67 +475,160 @@
 
 @media (max-width: 599px) {
   .main-slider {
-    padding-top: 100px; /* Push content below header */
+    /*padding-top: 170px;  Remove the empty space */
+    padding: 0px;
+    width: 100vw;
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
   }
 
   .main-slider:before,
   .main-slider:after {
-    height: 60px;
-    margin-top: -30px;
+    display: none;
+    content: none;
+  }
+
+  .main-slider .slider {
+    width: 100%;
+    height: 100%;
   }
 
   .main-slider .slider img {
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 }
 
-/* Tablets */
-@media (min-width: 600px) and (max-width: 1023px) {
-  .main-slider:before,
-  .main-slider:after {
-    height: 80px;
-    margin-top: -40px;
-  }
 
-  .slider .next-slide {
-    width: 50px;
-    height: 50px;
-  }
-
-  .main-slider .inner > .next-slide {
-    width: 80px;
-    height: 90px;
-    margin-top: -45px;
-  }
-
-  .main-slider .inner .next-slide:hover {
-    right: -20px;
-    width: 100px;
-  }
-}
-
-@media (max-width: 1023px) {
+/* Tablet (768px - 1023px) - Now matches desktop */
+@media (min-width: 768px) and (max-width: 1023px) {
   .main-slider {
-    margin-top: 70px; /* Push down to prevent navbar overlap */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height like desktop */
+    overflow: hidden;
+    position: relative;
     z-index: 1;
   }
 
-  .navbar {
-    position: fixed;
-    top: 0;
+  .main-slider::before,
+  .main-slider::after {
+    position: absolute;
+    top: 50%;
+    margin-top: -60px; /* Match desktop layout */
+    width: 50%;
+    height: 120px;
+    content: "";
+    display: block;
+    z-index: 0;
+  }
+
+  .main-slider::before {
+    left: 0;
+    background-color: #244AC2;
+  }
+
+  .main-slider::after {
+    right: 0;
+    background-color: #000000;
+  }
+
+  .main-slider .slider {
     width: 100%;
-    z-index: 1000;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .main-slider .slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 2; /* Above background overlays */
+  }
+
+  .slider .next-slide {
+    width: 60px;
+    height: 60px;
+  }
+
+  .main-slider .inner > .next-slide {
+    width: 101px;
+    height: 118px;
+    margin-top: -59px;
+  }
+
+  .main-slider .inner .next-slide:hover {
+    right: -25px;
+    width: 126px;
+  }
+
+  .hero-text h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero-text .tagline {
+    font-size: 2rem;
   }
 }
 
-/* Large screens and desktops */
+
 @media (min-width: 1024px) {
+  .main-slider {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Make pseudo-elements match the overlay-text, but ONLY for desktop */
   .main-slider:before,
   .main-slider:after {
-    height: 120px;
+    position: absolute;
+    top: 50%;
     margin-top: -60px;
+    width: 50%;
+    height: 120px;
+    content: "";
+    display: block;
+    z-index: 0;
+  }
+
+  .main-slider:before {
+    left: 0;
+    background-color: #244AC2;
+  }
+
+  .main-slider:after {
+    right: 0;
+    background-color: #000000; /* Or set to something if needed */
+  }
+
+  .main-slider .slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .main-slider .slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Full-screen image */
+    display: block;
   }
 
   .slider .next-slide {
@@ -436,96 +648,79 @@
   }
 }
 
+
   
   
 .intro-text {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2rem 20px;
-  justify-content: space-between;
-  align-items: center;
+  padding: 0 20px;
   max-width: 1500px;
   margin: 0 auto 90px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .intro-text p {
-  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-  color: #1c2b39;
-  font-size: 1.2rem;
-  line-height: 1.6;
+  width: 60%;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 300;
+  color: #061C2C;
   margin: 0;
-  flex: 1 1 60%;
-  text-align: left;
-  font-weight: 350;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
 .operations {
-  flex: 1 1 35%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  width: 416px;
+  height: 42px;
+  background-image: url(images/asset32.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 34px;
 }
 
-.operations img {
-  max-width: 100%;
-  height: auto;
+/* Tablet (925px - 1024px) */
+@media (max-width: 1024px) and (min-width: 925px) {
+  .intro-text p {
+    width: 55%;
+  }
+  .operations {
+    width: 350px;
+  }
 }
 
-/* Mobile (less than 768px) */
-@media (max-width: 767px) {
+/* Tablet (768px - 924px) */
+@media (max-width: 924px) {
+  .intro-text p {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .operations {
+    width: 100%;
+    justify-content: flex-start;
+    height: 36px;
+    margin-top: 0;
+  }
+}
+
+/* Mobile (745px and below) */
+@media (max-width: 745px) {
   .intro-text {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     margin-bottom: 30px;
   }
-
-  .intro-text p {
-    flex: 1 1 100%;
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
   .operations {
-    justify-content: center;
+    width: 300px;
+    height: 30px;
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .operations {
     width: 100%;
-  }
-
-  .operations img {
-    max-width: 90%;
-  }
-}
-
-/* Tablet (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .intro-text {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .intro-text p {
-    font-size: 1.1rem;
-  }
-
-  .operations img {
-    max-width: 90%;
-  }
-}
-
-/* Desktop (≥1025px) */
-@media (min-width: 1025px) {
-  .intro-text {
-    gap: 3rem;
-  }
-
-  .intro-text p {
-    font-size: 1.2rem;
-  }
-
-  .operations img {
-    max-width: 90%;
+    max-width: 250px;
   }
 }
 
